@@ -20,7 +20,7 @@ public class Czas {
         Tablica tab = new Tablica();
 
         // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             // Przykładowe operacje
             tab.addElement(i,i);
         }
@@ -37,23 +37,23 @@ public class Czas {
     }
 
 
-    public static void exampleMethod3() {
-        ListaJednokierunkowa l = new ListaJednokierunkowa();
-
-        // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-        for (int i = 0; i < 100; i++) {
-            // Przykładowe operacje
-            l.addElement(i);
-        }
-    }
-
-    public static void exampleMethod4() {
-        List<Integer> l = new ArrayList<>();
-
-        // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-        for (int i = 0; i < 100; i++) {
-            // Przykładowe operacje
-            l.add(i);
-        }
-    }
+//    public static void exampleMethod3() {
+//        ListaJednokierunkowa l = new ListaJednokierunkowa();
+//
+//        // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
+//        for (int i = 0; i < 100; i++) {
+//            // Przykładowe operacje
+//            l.addElement(i);
+//        }
+//    }
+//
+//    public static void exampleMethod4() {
+//        List<Integer> l = new ArrayList<>();
+//
+//        // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
+//        for (int i = 0; i < 100; i++) {
+//            // Przykładowe operacje
+//            l.add(i);
+//        }
+//    }
 }

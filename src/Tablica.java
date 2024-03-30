@@ -6,7 +6,7 @@ public class Tablica {
     private int size;
 
     public Tablica() {
-        array = new int[1];
+        array = new int[0];
         size = 0;
     }
     public Tablica(int rozmair) {
@@ -40,9 +40,12 @@ public class Tablica {
     }
     public void wyswietl(){
         //System.out.println(Arrays.toString(array));
-        for(int i = 0; i < array.length;i++){
-            System.out.print(array[i]+",");
+
+        for (int i = 0; i < array.length;i++){
+            System.out.print(array[i]+" | ");
         }
+
+        System.out.println(" ");
     }
 
     public void removeElement(int value) {
@@ -75,15 +78,14 @@ public class Tablica {
         }
     }
 
-    public void search(int value){
+    public boolean search(int value){
         int index = -1;
         for (int i = 0; i < size; i++) {
             if (array[i] == value) {
-                index = i;
-                break;
+                return true;
             }
         }
-        System.out.println(index);
+        return false;
     }
 
     // Pozostałe operacje na tablicy

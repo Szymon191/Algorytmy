@@ -16,16 +16,29 @@ public class ListaJednokierunkowa {
         this.head = null;
     }
 
-    public void addElement(int value) {
+    public void addElement(int value, int index) {
         Node newNode = new Node(value);
 
-        if (head == null) {
+        if (index < 0) {
+            System.out.println("Indeks nie może być ujemny.");
+            return;
+        }
+
+        if (index == 0) {
+            newNode.next = head;
             head = newNode;
         } else {
             Node current = head;
-            while (current.next != null) {
+            int currentIndex = 0;
+            while (current != null && currentIndex < index - 1) {
                 current = current.next;
+                currentIndex++;
             }
+            if (current == null) {
+                System.out.println("Podany indeks wykracza poza granice listy.");
+                return;
+            }
+            newNode.next = current.next;
             current.next = newNode;
         }
     }
@@ -36,46 +49,45 @@ public class ListaJednokierunkowa {
             return;
         }
 
-        if (head.data == value) {
+        while (head != null && head.data == value) {
             head = head.next;
+        }
+
+        if (head == null) {
             return;
         }
 
-        Node prev = null;
-        Node current = head;
+        Node prev = head;
+        Node current = head.next;
 
-        while (current != null && current.data != value) {
-            prev = current;
+        while (current != null) {
+            if (current.data == value) {
+                prev.next = current.next;
+            } else {
+                prev = current;
+            }
             current = current.next;
         }
-
-        if (current == null) {
-            System.out.println("Element nie istnieje w liście.");
-            return;
-        }
-
-        prev.next = current.next;
     }
 
 
-    public int search(int value) {
+    public boolean search(int value) {
         Node current = head;
-        int index=0;
+
         while (current != null) {
             if (current.data == value) {
-                return index; // Znaleziono element
-
+                return true;
             }
-            index+=1;
             current = current.next;
         }
-        return -1;
+
+        return false;
     }
 
     public void displayList() {
         Node current = head;
         while (current != null) {
-            System.out.print(current.data + ",");
+            System.out.print(current.data + " | ");
             current = current.next;
         }
         System.out.println();

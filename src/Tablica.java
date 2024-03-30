@@ -40,12 +40,9 @@ public class Tablica {
     }
     public void wyswietl(){
         //System.out.println(Arrays.toString(array));
-
-        for (int i = 0; i < array.length;i++){
-            System.out.print(array[i]+" | ");
+        for(int i = 0; i < array.length;i++){
+            System.out.print(array[i]+",");
         }
-
-        System.out.println(" ");
     }
 
     public void removeElement(int value) {
@@ -82,7 +79,12 @@ public class Tablica {
         int index = -1;
         for (int i = 0; i < size; i++) {
             if (array[i] == value) {
-                return true;
+                index = i;
+                if(index>-1){
+                    return true;
+
+                }
+                break;
             }
         }
         return false;

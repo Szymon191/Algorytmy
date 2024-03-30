@@ -11,7 +11,6 @@ public class ListaDwukierunkowa {
         }
     }
 
-    // References to the head and tail of the list
     private Element head;
     private Element tail;
 

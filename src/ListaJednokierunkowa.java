@@ -16,7 +16,7 @@ public class ListaJednokierunkowa {
         this.head = null;
     }
 
-    public void addElement(int value, int index) {
+    public void addElement(int index,int value) {
         Node newNode = new Node(value);
 
         if (index < 0) {

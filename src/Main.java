@@ -20,7 +20,7 @@ public class Main {
                 int randomNumber = random.nextInt(1000);
                 writer.write(randomNumber + "\n");
             }
-            System.out.println("Pomyślnie zapisano 100 liczb do pliku.");
+            System.out.println("Pomyślnie zapisano " + size + " liczb do pliku.");
         } catch (IOException e) {
             System.err.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
         }
@@ -30,7 +30,7 @@ public class Main {
         System.out.println();
         System.out.println("---------------------------");
         System.out.println("1. Dodawanie");
-        System.out.println("2. dodaj dane z pliku");
+        System.out.println("2. Dodaj dane z pliku");
         System.out.println("3. Usuwanie");
         System.out.println("4. Szukanie");
 
@@ -91,7 +91,7 @@ public class Main {
                         tablica.addElement(index, value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
 
                     } else if (choice == 2) {
@@ -108,7 +108,7 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 3) {
                         System.out.print("Podaj wartosc: ");
@@ -118,7 +118,7 @@ public class Main {
                         tablica.removeElement(value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 4) {
                         System.out.print("Podaj wartosc: ");
@@ -132,7 +132,7 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     }
 
                     System.out.println();
@@ -156,7 +156,7 @@ public class Main {
                         listaJednokierunkowa.addElement(index, value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 2) {
                         start_time = System.nanoTime();
@@ -172,7 +172,7 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 3) {
                         System.out.print("Podaj wartosc: ");
@@ -182,7 +182,7 @@ public class Main {
                         listaJednokierunkowa.removeElement(value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 4) {
                         System.out.print("Podaj wartosc: ");
@@ -195,7 +195,7 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     }
 
                     System.out.println(" ");
@@ -220,7 +220,7 @@ public class Main {
                         listaDwukierunkowa.add(index, value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
 
                     } else if (choice == 2) {
                         start_time = System.nanoTime();
@@ -236,7 +236,7 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     } else if (choice == 3) {
                         System.out.print("Podaj wartosc: ");
                         value = scanner.nextInt();
@@ -245,7 +245,7 @@ public class Main {
                         listaDwukierunkowa.remove(value);
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     } else if (choice == 4) {
                         System.out.print("Podaj wartosc: ");
                         value = scanner.nextInt();
@@ -258,19 +258,19 @@ public class Main {
                         }
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     } else if(choice == 5){
                         start_time = System.nanoTime();
                         listaDwukierunkowa.removeFromBeginning();
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     } else if (choice == 6) {
                         start_time = System.nanoTime();
                         listaDwukierunkowa.removeFromEnd();
                         end_time = System.nanoTime();
                         exc_time = (int)(end_time-start_time);
-                        System.out.println("\nCzas operacji: "+exc_time+"nanosekund");
+                        System.out.println("\nCzas operacji: "+exc_time+" nanosekund");
                     }
 
                     System.out.println();
@@ -281,12 +281,6 @@ public class Main {
         } while (choiceStructure != 4);
 
         scanner.close();
-
-//        long executionTime = Czas.measureExecutionTime(Czas::exampleMethod);
-//        System.out.println("Czas wykonania metody exampleMethod: " + executionTime + " nanosekund.");
-//
-//        long executionTime2 = Czas.measureExecutionTime(Czas::exampleMethod2);
-//        System.out.println("Czas wykonania metody exampleMethod2: " + executionTime2 + " nanosekund.");
 
     }
 }

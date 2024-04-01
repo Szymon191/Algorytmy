@@ -41,7 +41,7 @@ public class Tablica {
     public void wyswietl(){
         //System.out.println(Arrays.toString(array));
         for(int i = 0; i < array.length;i++){
-            System.out.print(array[i]+",");
+            System.out.print(array[i]+" | ");
         }
     }
 

@@ -1,112 +1,111 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Czas {
-    private static String fileName = "liczby.txt"; // Wstaw nazwę swojego pliku
+    private static final String fileName = "liczby.txt";
+    private static FileWriter writer = null;
+    BufferedReader br = null;
+    // Wstaw nazwę swojego pliku
+    static long start_time = System.currentTimeMillis();
+    static long end_time = System.currentTimeMillis();
+    static int exc_time = 0;
+    ArrayList<Integer> timers = new ArrayList<>();
 
-    // Metoda do pomiaru czasu wykonania innej metody
-    public static long measureExecutionTime(Runnable methodToMeasure) {
-        long startTime = System.nanoTime();
 
-        // Wywołanie metody do pomiaru
-        methodToMeasure.run();
+    public Czas(Tablica tablica, ListaJednokierunkowa listaJednokierunkowa, ListaDwukierunkowa listaDwukierunkowa) throws IOException {
+        array(tablica);
+        sigledlist(listaJednokierunkowa);
+        doublyLinkedList(listaDwukierunkowa);
+    }
 
-        long endTime = System.nanoTime();
+    public static void savetoFile(ArrayList<Integer> timers, String operation){
+        String fileName = operation; // Nazwa pliku CSV
+        try{
+            writer = new FileWriter(fileName);
+            // Zapisujemy dane do pliku CSV
+            for(Object o : timers){
+                writer.append(String.format("%s \n", o));
+            }
 
-        // Obliczenie czasu trwania w nanosekundach
-        return endTime - startTime;
+            System.out.println("Pomyślnie zapisano dane do pliku CSV.");
+        } catch (IOException e) {
+            System.err.println("Błąd podczas zapisywania do pliku CSV: " + e.getMessage());
+        }
+        finally {
+            try {
+                writer.close();
+            }
+            catch (IOException e) {
+                System.err.println("Błąd zamykania pliku: " + e.getMessage());
+            }
+        }
     }
 
 
-    //tablice
-    // Przykładowa metoda, którą chcemy zmierzyć
-    class Array {
-        public static Tablica tab = new Tablica();
-        public static void exampleMethod() {
-            // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                int i = 0;
-                while ((line = br.readLine()) != null) {
-                    tab.addElement(i, Integer.parseInt(line));
-                    i++;
-                }
-            } catch (IOException e) {
-                System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+    private void array(Tablica tablica){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                tablica.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                timers.add(exc_time);
+                //System.out.println("\nCzas operacji: "+exc_time+" ms");
+
+                i++;
             }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
         }
-
-        public static void exampleMethod2() {
-            int[] test = new int[100000];
-            // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                int i = 0;
-                while ((line = br.readLine()) != null) {
-                    test[i] = Integer.parseInt(line);
-                    i++;
-                }
-            } catch (IOException e) {
-                System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
-            }
-        }
-
-        public static void usuwanie(){
-            tab.removeElement(10000);
-        }
-
-        public static void szukanie(){
-            System.out.println(tab.search(6));
-        }
-
+        savetoFile(timers, "ArrayData.csv");
     }
 
+    private void sigledlist(ListaJednokierunkowa listaJednokierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                listaJednokierunkowa.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                timers.add(exc_time);
+                //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
-    class SigleLinkedList{
-        public static ListaJednokierunkowa l = new ListaJednokierunkowa();
-        public static void exampleMethod3() {
-            // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                int i = 0;
-                while ((line = br.readLine()) != null) {
-                    l.addElement(i,Integer.parseInt(line));
-                    //i++;
-                }
-            } catch (IOException e) {
-                System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+                i++;
             }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
         }
-
-        public static void exampleMethod4() {
-            List<Integer> l = new ArrayList<>();
-
-            // Tutaj umieść kod, który chcesz zmierzyć czas wykonania
-            try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                String line;
-                //int i = 0;
-                while ((line = br.readLine()) != null) {
-                    l.add(Integer.parseInt(line));
-                    //i++;
-                }
-            } catch (IOException e) {
-                System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
-            }
-        }
-
-        public static void usuwanie(){
-            l.removeElement(10000);
-        }
-
-        public static void szukanie(){
-            System.out.println(l.search(66356452));
-        }
-
+        savetoFile(timers, "SingledListData.csv");
     }
 
+    private void doublyLinkedList(ListaDwukierunkowa listaDwukierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                listaDwukierunkowa.add(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                timers.add(exc_time);
+                //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
-
+                i++;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "doubleLinkedListData.csv");
+    }
 }

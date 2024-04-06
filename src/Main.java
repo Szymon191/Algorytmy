@@ -56,7 +56,7 @@ public class Main {
         System.out.print("Wybierz opcje: ");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -66,7 +66,8 @@ public class Main {
         Tablica tablica = new Tablica();
         ListaJednokierunkowa listaJednokierunkowa = new ListaJednokierunkowa();
         ListaDwukierunkowa listaDwukierunkowa = new ListaDwukierunkowa();
-        testData(10);
+        testData(1000);
+        Czas czas = new Czas(tablica,listaJednokierunkowa, listaDwukierunkowa);
 
 
         do {

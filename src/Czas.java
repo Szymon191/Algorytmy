@@ -1,25 +1,25 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Czas {
     private static final String fileName = "liczby.txt";
     private static FileWriter writer = null;
     BufferedReader br = null;
-    // Wstaw nazwę swojego pliku
     static long start_time = System.currentTimeMillis();
     static long end_time = System.currentTimeMillis();
-    static int exc_time = 0;
-    ArrayList<Integer> timers = new ArrayList<>();
+    static double exc_time = 0;
+    ArrayList<String> timers = new ArrayList<>();
 
 
-    public Czas(Tablica tablica, ListaJednokierunkowa listaJednokierunkowa, ListaDwukierunkowa listaDwukierunkowa) throws IOException {
-        array(tablica);
+    public Czas(Tablica tablica, ListaJednokierunkowa listaJednokierunkowa, ListaDwukierunkowa listaDwukierunkowa){
+        arrayEnd(tablica);
+        arrayStart(tablica);
+        arrayMiddle(tablica);
         sigledlist(listaJednokierunkowa);
         doublyLinkedList(listaDwukierunkowa);
     }
 
-    public static void savetoFile(ArrayList<Integer> timers, String operation){
+        public static void savetoFile(ArrayList<String> timers, String operation){
         String fileName = operation; // Nazwa pliku CSV
         try{
             writer = new FileWriter(fileName);
@@ -43,7 +43,7 @@ public class Czas {
     }
 
 
-    private void array(Tablica tablica){
+    private void arrayEnd(Tablica tablica){
         timers.clear();
         try{
             br = new BufferedReader(new FileReader(fileName));
@@ -54,7 +54,9 @@ public class Czas {
                 tablica.addElement(i, Integer.parseInt(line));
                 end_time = System.nanoTime();
                 exc_time = (int)(end_time-start_time);
-                timers.add(exc_time);
+                System.out.println(end_time + " " + start_time + " " + exc_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.valueOf(exc_time));
                 //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
                 i++;
@@ -62,7 +64,56 @@ public class Czas {
         }catch (IOException e) {
             System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
         }
-        savetoFile(timers, "ArrayData.csv");
+        savetoFile(timers, "ArrayDataEnd.csv");
+    }
+
+    private void arrayMiddle(Tablica tablica){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                i = tablica.lenght() / 2;
+                start_time = System.nanoTime();
+                tablica.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.valueOf(exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i++;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "ArrayDataMiddle.csv");
+        //tablica.wyswietl();
+    }
+
+    private void arrayStart(Tablica tablica){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                tablica.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.valueOf(exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i--;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "ArrayDataStart.csv");
+        //tablica.wyswietl();
     }
 
     private void sigledlist(ListaJednokierunkowa listaJednokierunkowa){
@@ -76,7 +127,10 @@ public class Czas {
                 listaJednokierunkowa.addElement(i, Integer.parseInt(line));
                 end_time = System.nanoTime();
                 exc_time = (int)(end_time-start_time);
-                timers.add(exc_time);
+                System.out.println(exc_time);
+                exc_time = exc_time / 1000000;
+                System.out.println(exc_time);
+                timers.add(String.format("%1f", exc_time));
                 //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
                 i++;
@@ -98,7 +152,8 @@ public class Czas {
                 listaDwukierunkowa.add(i, Integer.parseInt(line));
                 end_time = System.nanoTime();
                 exc_time = (int)(end_time-start_time);
-                timers.add(exc_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.format("%2f", exc_time));
                 //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
                 i++;

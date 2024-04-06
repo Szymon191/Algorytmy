@@ -91,12 +91,8 @@ public class Tablica {
         return false;
     }
 
-    // Pozostałe operacje na tablicy
-
-    // Metody pomiaru czasu operacji
-
-    // Metody analizy statystycznej
-
-    // Metoda równoważenia drzewa BST
+    public int lenght(){
+        return size;
+    }
 
 }

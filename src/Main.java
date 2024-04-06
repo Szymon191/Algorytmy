@@ -68,8 +68,6 @@ public class Main {
         ListaDwukierunkowa listaDwukierunkowa = new ListaDwukierunkowa();
         testData(1000);
         Czas czas = new Czas(tablica,listaJednokierunkowa, listaDwukierunkowa);
-
-
         do {
             MainMenu();
             choiceStructure = scanner.nextInt();

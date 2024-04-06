@@ -61,15 +61,16 @@ public class Tablica {
             for (int i = index; i < size - 1; i++) {
                 array[i] = array[i + 1];
             }
+
             // Zmniejszenie rozmiaru tablicy
             size--;
             int[] newArray = new int[array.length - 1];
+
             for (int i = 0; i < size; i++) {
                 newArray[i] = array[i];
             }
+
             array = newArray;
-
-
         } else {
             System.out.println("Element nie istnieje w tablicy.");
         }

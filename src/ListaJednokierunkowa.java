@@ -49,11 +49,9 @@ public class ListaJednokierunkowa {
             return;
         }
 
-        while (head != null && head.data == value) {
+        // Usuwanie pierwszego elementu o wartości value, jeśli jest to głowa listy
+        if (head.data == value) {
             head = head.next;
-        }
-
-        if (head == null) {
             return;
         }
 
@@ -63,10 +61,11 @@ public class ListaJednokierunkowa {
         while (current != null) {
             if (current.data == value) {
                 prev.next = current.next;
+                return;
             } else {
                 prev = current;
+                current = current.next;
             }
-            current = current.next;
         }
     }
 

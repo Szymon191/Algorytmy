@@ -68,6 +68,8 @@ public class ListaDwukierunkowa {
                     current.previous.next = current.next;
                     current.next.previous = current.previous;
                 }
+
+                break;
             }
             current = current.next;
         }

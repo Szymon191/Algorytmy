@@ -15,8 +15,12 @@ public class Czas {
         arrayEnd(tablica);
         arrayStart(tablica);
         arrayMiddle(tablica);
-        sigledlist(listaJednokierunkowa);
-        doublyLinkedList(listaDwukierunkowa);
+        sigledlistEnd(listaJednokierunkowa);
+        sigledlistStart(listaJednokierunkowa);
+        sigledlistMiddle(listaJednokierunkowa);
+        doublyLinkedListEnd(listaDwukierunkowa);
+        doublyLinkedListStart(listaDwukierunkowa);
+        doublyLinkedListMiddle(listaDwukierunkowa);
     }
 
         public static void savetoFile(ArrayList<String> timers, String operation){
@@ -56,9 +60,8 @@ public class Czas {
                 exc_time = (int)(end_time-start_time);
                 System.out.println(end_time + " " + start_time + " " + exc_time);
                 exc_time = exc_time / 1000000;
-                timers.add(String.valueOf(exc_time));
+                timers.add(String.format("%2f", exc_time));
                 //System.out.println("\nCzas operacji: "+exc_time+" ms");
-
                 i++;
             }
         }catch (IOException e) {
@@ -80,7 +83,7 @@ public class Czas {
                 end_time = System.nanoTime();
                 exc_time = (int)(end_time-start_time);
                 exc_time = exc_time / 1000000;
-                timers.add(String.valueOf(exc_time));
+                timers.add(String.format("%2f", exc_time));
                 //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
                 //System.out.println(i);
                 //i++;
@@ -104,7 +107,7 @@ public class Czas {
                 end_time = System.nanoTime();
                 exc_time = (int)(end_time-start_time);
                 exc_time = exc_time / 1000000;
-                timers.add(String.valueOf(exc_time));
+                timers.add(String.format("%2f", exc_time));
                 //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
                 //System.out.println(i);
                 //i--;
@@ -116,7 +119,56 @@ public class Czas {
         //tablica.wyswietl();
     }
 
-    private void sigledlist(ListaJednokierunkowa listaJednokierunkowa){
+    private void sigledlistStart(ListaJednokierunkowa listaJednokierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                listaJednokierunkowa.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.format("%2f", exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i--;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "sigledlistStartData.csv");
+        //tablica.wyswietl();
+    }
+
+    private void sigledlistMiddle(ListaJednokierunkowa listaJednokierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                i = listaJednokierunkowa.length() / 2;
+                start_time = System.nanoTime();
+                listaJednokierunkowa.addElement(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.format("%2f", exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i++;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "sigledlistMiddleData.csv");
+        //tablica.wyswietl();
+    }
+
+    private void sigledlistEnd(ListaJednokierunkowa listaJednokierunkowa){
         timers.clear();
         try{
             br = new BufferedReader(new FileReader(fileName));
@@ -130,7 +182,7 @@ public class Czas {
                 System.out.println(exc_time);
                 exc_time = exc_time / 1000000;
                 System.out.println(exc_time);
-                timers.add(String.format("%1f", exc_time));
+                timers.add(String.format("%2f", exc_time));
                 //System.out.println("\nCzas operacji: "+exc_time+" ms");
 
                 i++;
@@ -138,10 +190,10 @@ public class Czas {
         }catch (IOException e) {
             System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
         }
-        savetoFile(timers, "SingledListData.csv");
+        savetoFile(timers, "SingledListDataEnd.csv");
     }
 
-    private void doublyLinkedList(ListaDwukierunkowa listaDwukierunkowa){
+    private void doublyLinkedListEnd(ListaDwukierunkowa listaDwukierunkowa){
         timers.clear();
         try{
             br = new BufferedReader(new FileReader(fileName));
@@ -161,6 +213,55 @@ public class Czas {
         }catch (IOException e) {
             System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
         }
-        savetoFile(timers, "doubleLinkedListData.csv");
+        savetoFile(timers, "doublyLinkedListEndData.csv");
+    }
+
+    private void doublyLinkedListMiddle(ListaDwukierunkowa listaDwukierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                i = listaDwukierunkowa.length() / 2;
+                start_time = System.nanoTime();
+                listaDwukierunkowa.add(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.format("%2f", exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i++;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "doublyLinkedListMiddleData.csv");
+        //tablica.wyswietl();
+    }
+
+    private void doublyLinkedListStart(ListaDwukierunkowa listaDwukierunkowa){
+        timers.clear();
+        try{
+            br = new BufferedReader(new FileReader(fileName));
+            String line;
+            int i =0;
+            while ((line = br.readLine()) != null) {
+                start_time = System.nanoTime();
+                listaDwukierunkowa.add(i, Integer.parseInt(line));
+                end_time = System.nanoTime();
+                exc_time = (int)(end_time-start_time);
+                exc_time = exc_time / 1000000;
+                timers.add(String.format("%2f", exc_time));
+                //System.out.println("\n" + i + "Czas operacji: "+exc_time+" ms" + "-" + Integer.parseInt(line));
+                //System.out.println(i);
+                //i--;
+            }
+        }catch (IOException e) {
+            System.err.println("Błąd podczas czytania pliku: " + e.getMessage());
+        }
+        savetoFile(timers, "doublyLinkedListStartData.csv");
+        //tablica.wyswietl();
     }
 }

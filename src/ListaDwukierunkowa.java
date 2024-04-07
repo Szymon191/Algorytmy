@@ -119,4 +119,14 @@ public class ListaDwukierunkowa {
 
         System.out.println();
     }
+
+    public int length(){
+        Element current = head;
+        int length = 0;
+        while (current != null) {
+            current = current.next;
+            length++;
+        }
+        return length;
+    }
 }

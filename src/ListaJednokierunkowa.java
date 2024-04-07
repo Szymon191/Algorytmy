@@ -92,4 +92,14 @@ public class ListaJednokierunkowa {
         System.out.println();
     }
 
+    public int length(){
+        Node current = head;
+        int length = 0;
+        while (current != null) {
+            current = current.next;
+            length++;
+        }
+        return length;
+    }
+
 }

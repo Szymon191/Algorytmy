@@ -66,7 +66,7 @@ public class Main {
         Tablica tablica = new Tablica();
         ListaJednokierunkowa listaJednokierunkowa = new ListaJednokierunkowa();
         ListaDwukierunkowa listaDwukierunkowa = new ListaDwukierunkowa();
-        testData(1000);
+        testData(100000);
         Czas czas = new Czas(tablica,listaJednokierunkowa, listaDwukierunkowa);
         do {
             MainMenu();
